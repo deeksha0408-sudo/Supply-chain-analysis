@@ -1,186 +1,54 @@
-# Supply Chain Analysis
+# 📦 Supply Chain Analysis & Risk Prediction
 
-End-to-end data analysis and machine learning project on a supply chain dataset using Python (Pandas, NumPy, Seaborn, Matplotlib, Scikit-learn).
+An exploratory data analysis and machine learning project on supply chain operations using Python to uncover insights on revenue, shipping costs, supplier performance, inventory, and defect risk.
 
-## Table of Contents
-- [1. Introduction](#1-introduction)
-- [2. Dataset Overview](#2-dataset-overview)
-- [3. Table Structure](#3-table-structure)
-- [4. Data Import Process](#4-data-import-process)
-- [5. Data Cleaning](#5-data-cleaning)
-- [6. Exploratory Data Analysis](#6-exploratory-data-analysis)
-- [7. Business Insights](#7-business-insights)
-- [8. Conclusion](#8-conclusion)
-- [9. Screenshots and other information](#9-screenshots-and-other-information)
+## Analysis Overview
 
-## 📦 Supply Chain Analysis & Risk Prediction
+- Data Import & Cleaning
+- Exploratory Data Analysis (EDA)
+- Revenue & Shipping Cost Analysis
+- Supplier Performance & Bottleneck Detection
+- Risk Prediction with Random Forest
 
-### Project Overview
+## Data Exploration
 
-This project performs an end-to-end analysis of supply chain operations using Python. The objective is to identify operational inefficiencies, supplier quality issues, inventory risks, and shipping bottlenecks while leveraging machine learning to predict high-risk products.
+- Dataset shape check (100 rows, 24 columns)
+- Data type and null value check across all columns
+- Descriptive statistics for numerical fields
+- Duplicate removal
+- Missing value handling (mode for categorical, median for numerical)
 
-The analysis covers data cleaning, exploratory data analysis (EDA), business intelligence reporting, and predictive modeling using a Random Forest Classifier.
+## Data Validation
 
-## 1. Introduction
+- Revenue distribution across product types
+- Shipping cost distribution by transport mode
+- Stock level distribution
+- Supplier lead time and defect rate summary
 
-This project performs a complete supply chain analysis, moving from raw data to actionable business insights. It explores revenue generation, shipping costs, supplier performance, inventory levels, route bottlenecks, and defect rates across the supply chain. It then trains a **Random Forest classifier** to predict high-risk products (those with above-median defect rates) and identifies the most influential risk features.
+## Business Analysis
 
-The project is structured as a step-by-step Jupyter notebook (`supply_chain_analysis.ipynb`) covering data loading, cleaning, exploratory analysis, visualization, feature engineering, and model building.
+- Q1 - Highest revenue product category
+- Q2 - Supplier with highest defect rate
+- Q3 - Route with maximum lead time (bottleneck detection)
+- Q4 - Root cause analysis by supplier defect rate
+- Q5 - Revenue analysis by product type
+- Q6 - Shipping cost analysis by transport mode
+- Q7 - Inventory (stock level) distribution
+- Q8 - Supplier performance ranking (lead time, defect rate, revenue)
 
-## 2. Dataset Overview
+## Additional Insights
 
-- **Source file:** `dataset/supply_chain_data.csv`
-- **Total rows:** 100
-- **Total columns:** 24
-- **File size:** Small (~100-record retail supply chain sample)
-- **Rows/Columns in notebook output:** `(100, 24)`
+- High-risk product prediction using a Random Forest Classifier
+- Feature importance ranking for risk prediction
+- Top suppliers and routes to watch for operational improvement
 
-The dataset contains transactional and operational records spanning product types (skincare, haircare, cosmetics), suppliers, locations (Mumbai, Kolkata, etc.), shipping carriers, transportation modes, and routes.
+## Technologies
 
-## 3. Table Structure
+- Python - Core language
+- Pandas & NumPy - Data manipulation
+- Matplotlib & Seaborn - Visualization
+- Scikit-learn - Machine learning (Random Forest)
 
-The dataset contains the following columns:
+## About
 
-| Column | Description |
-|--------|-------------|
-| `Product type` | Category of the product (skincare, haircare, cosmetics) |
-| `SKU` | Stock Keeping Unit identifier |
-| `Price` | Product selling price |
-| `Availability` | Product availability percentage/days |
-| `Number of products sold` | Units sold |
-| `Revenue generated` | Total revenue from the product |
-| `Customer demographics` | Target customer segment |
-| `Stock levels` | Current stock quantity |
-| `Lead times` | Order-to-delivery lead time (days) |
-| `Order quantities` | Order size |
-| `Shipping times` | Number of shipping days |
-| `Shipping carriers` | Carrier used (Carrier A/B/C) |
-| `Shipping costs` | Cost of shipping |
-| `Supplier name` | Supplier identifier (Supplier 1–5) |
-| `Location` | Supplier location/city |
-| `Lead time` | Supplier lead time (days) |
-| `Production volumes` | Quantity produced |
-| `Manufacturing lead time` | Time to manufacture |
-| `Manufacturing costs` | Cost of manufacturing |
-| `Inspection results` | Quality inspection outcome (Pending, Fail, Pass) |
-| `Defect rates` | Product defect rate |
-| `Transportation modes` | Mode of transport (Road, Air, Rail, Sea) |
-| `Routes` | Shipping route identifier (Route A/B/C...) |
-| `Costs` | Total associated costs |
-
-## 4. Data Import Process
-
-The notebook starts by importing the required libraries:
-
-```python
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import classification_report, confusion_matrix
-```
-
-The dataset is loaded using Pandas:
-
-```python
-df = pd.read_csv("supply_chain_data.csv")
-```
-
-## 5. Data Cleaning
-
-The cleaning step runs as follows:
-
-```python
-# Remove duplicates
-df = df.drop_duplicates()
-
-# Fill missing values
-for col in df.select_dtypes(include='object'):
-    df[col].fillna(df[col].mode()[0], inplace=True)
-
-for col in df.select_dtypes(exclude='object'):
-    df[col].fillna(df[col].median(), inplace=True)
-```
-
-- **Duplicates:** Removed with `drop_duplicates()`.
-- **Categorical missing values:** Filled with the **mode** (most frequent value).
-- **Numerical missing values:** Filled with the **median** (robust to outliers).
-
-Data quality checks (`df.info()`, `df.describe()`, `df.isnull().sum()`) are run before cleaning to understand types, distributions, and nulls.
-
-## 6. Exploratory Data Analysis
-
-The EDA covers the following analyses with visualizations:
-
-### 6.1 Revenue Analysis
-### 6.2 Shipping Cost Analysis
-### 6.3 Supplier Performance
-### 6.4 Inventory Analysis
-### 6.5 Bottleneck Detection
-### 6.6 Root Cause Analysis
-
-## 7. Business Insights
-
-The notebook computes the following actionable insights:
-
-- **Highest revenue product category:** The product type with the maximum total revenue (printed with its dollar value).
-- **Supplier with highest defect rate:** Supplier with the worst average defect rate, flagged for quality improvement.
-- **Route with maximum lead time:** The shipping route with the highest average lead time, indicating a bottleneck.
-
-### Machine Learning Model
-
-- **Target feature engineering:** A binary `High_Risk` flag is created where `1` = defect rate above the median:
-
-```python
-df['High_Risk'] = np.where(
-    df['Defect rates'] > df['Defect rates'].median(), 1, 0
-)
-```
-
-- **Model:** `RandomForestClassifier` (100 trees, `random_state=42`).
-- **Features used:** `Price`, `Availability`, `Stock levels`, `Lead time`, `Shipping costs`.
-- **Split:** 80/20 train-test split with `random_state=42`.
-- **Evaluation:** `classification_report` plus a confusion matrix heatmap.
-- **Feature importance:** A bar chart of each feature's importance ranking, showing which variables most influence the high-risk prediction.
-
-## 8. Conclusion
-
-The project demonstrates a complete supply chain analytics workflow:
-
-1. Loading and cleaning a raw supply chain dataset.
-2. Profiling revenue, shipping, inventory, and supplier quality.
-3. Detecting delays and bottlenecks by route and supplier.
-4. Building a Random Forest model to predict high-risk (high-defect) products.
-5. Interpreting feature importance to guide operational decisions.
-
-The insights enable data-driven decisions such as renegotiating with low-quality suppliers, optimizing shipping routes, and prioritizing inventory for high-revenue product lines.
-
-
-### Project Structure
-
-```
-supply-chain-analysis/
-├── supply_chain_analysis.ipynb   # Main analysis notebook
-├── dataset/
-│   └── supply_chain_data.csv      # Raw dataset
-└── README.md                      # Project documentation
-```
-
-### Requirements
-
-- Python 3.x
-- pandas
-- numpy
-- matplotlib
-- seaborn
-- scikit-learn
-
-Install dependencies with:
-
-```bash
-pip install pandas numpy matplotlib seaborn scikit-learn
-```
+Supply Chain Analysis & Risk Prediction
