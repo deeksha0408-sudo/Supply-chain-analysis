@@ -82,13 +82,6 @@ The dataset is loaded using Pandas:
 df = pd.read_csv("supply_chain_data.csv")
 ```
 
-Then the shape and a preview are printed:
-
-```python
-print(df.shape)   # (100, 24)
-df.head()
-```
-
 ## 5. Data Cleaning
 
 The cleaning step runs as follows:
@@ -116,22 +109,11 @@ Data quality checks (`df.info()`, `df.describe()`, `df.isnull().sum()`) are run 
 The EDA covers the following analyses with visualizations:
 
 ### 6.1 Revenue Analysis
-Bar chart of total `Revenue generated` grouped by `Product type`, showing which category drives the most revenue.
-
 ### 6.2 Shipping Cost Analysis
-Box plot of `Shipping costs` by `Transportation modes` to compare cost distribution across Road, Air, Rail, and Sea.
-
 ### 6.3 Supplier Performance
-Aggregation by `Supplier name` (mean `Lead time`, mean `Defect rates`, total `Revenue generated`), sorted to surface poorly performing suppliers.
-
 ### 6.4 Inventory Analysis
-Histogram (with KDE) of `Stock levels` to inspect the inventory distribution.
-
 ### 6.5 Bottleneck Detection
-Route-level aggregation of mean `Lead time` and `Shipping costs`, sorted descending by lead time to find the slowest routes.
-
 ### 6.6 Root Cause Analysis
-Mean `Defect rate` per supplier, plotted as a bar chart to identify quality problem areas.
 
 ## 7. Business Insights
 
@@ -169,9 +151,6 @@ The project demonstrates a complete supply chain analytics workflow:
 
 The insights enable data-driven decisions such as renegotiating with low-quality suppliers, optimizing shipping routes, and prioritizing inventory for high-revenue product lines.
 
-## 9. Screenshots and other information
-
-Screenshots of the analysis outputs — including the revenue bar chart, shipping cost box plot, stock level histogram, defect rate bar chart, confusion matrix, and feature importance plot — are produced when the notebook is run and can be added to a `screenshots/` folder.
 
 ### Project Structure
 
@@ -197,14 +176,3 @@ Install dependencies with:
 ```bash
 pip install pandas numpy matplotlib seaborn scikit-learn
 ```
-
-### How to Run
-
-1. Clone the repository.
-2. Place/keep `supply_chain_data.csv` inside the `dataset/` folder (or the notebook root, matching the notebook's `pd.read_csv("supply_chain_data.csv")` call).
-3. Open `supply_chain_analysis.ipynb` in Jupyter Notebook/Lab or VS Code.
-4. Run all cells.
-
----
-
-**Author:** deeksha0408-sudo
