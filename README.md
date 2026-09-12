@@ -27,6 +27,13 @@ An exploratory data analysis and machine learning project on supply chain operat
 
 ## Insights
 
+- Skincare is the top revenue generator (~$241.6k) vs haircare (~$174.5k) and cosmetics (~$161.5k).
+- Supplier 5 has the highest defect rate (2.67%), followed by Supplier 3 (2.47%) and Supplier 2 (2.36%); Supplier 1 is best at ~1.80%.
+- Route B is the biggest bottleneck with ~18.2 days average lead time.
+- Air is the most expensive transport mode (~$6.02 avg shipping cost); Sea is cheapest (~$4.97).
+- Mumbai and Kolkata generate the most revenue; Delhi the least.
+- Random Forest risk model: lead time is the top driver of high-risk shipments (importance 0.31), followed by price, stock levels, shipping costs, and availability.
+
 - High-risk product prediction using a Random Forest Classifier
 - Feature importance ranking for risk prediction
 - Top suppliers and routes to watch for operational improvement
