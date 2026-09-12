@@ -40,3 +40,24 @@ An exploratory data analysis and machine learning project on supply chain operat
 - Pandas & NumPy - Data manipulation
 - Matplotlib & Seaborn - Visualization
 - Scikit-learn - Machine learning (Random Forest)
+
+## Project Structure
+
+```
+├── supply_chain_analysis.ipynb   # Main analysis notebook
+├── dataset/
+│   └── supply_chain_data.csv      # Raw dataset
+└── README.md                      # Project documentation
+```
+
+## How to Run
+
+```bash
+pip install pandas numpy matplotlib seaborn scikit-learn
+```
+
+Then open `supply_chain_analysis.ipynb` in Jupyter Notebook / VS Code and run all cells.
+
+## About
+
+Supply Chain Analysis & Risk Prediction
