@@ -13,6 +13,14 @@ End-to-end data analysis and machine learning project on a supply chain dataset 
 - [8. Conclusion](#8-conclusion)
 - [9. Screenshots and other information](#9-screenshots-and-other-information)
 
+## 📦 Supply Chain Analysis & Risk Prediction
+
+### Project Overview
+
+This project performs an end-to-end analysis of supply chain operations using Python. The objective is to identify operational inefficiencies, supplier quality issues, inventory risks, and shipping bottlenecks while leveraging machine learning to predict high-risk products.
+
+The analysis covers data cleaning, exploratory data analysis (EDA), business intelligence reporting, and predictive modeling using a Random Forest Classifier.
+
 ## 1. Introduction
 
 This project performs a complete supply chain analysis, moving from raw data to actionable business insights. It explores revenue generation, shipping costs, supplier performance, inventory levels, route bottlenecks, and defect rates across the supply chain. It then trains a **Random Forest classifier** to predict high-risk products (those with above-median defect rates) and identifies the most influential risk features.
